@@ -1,0 +1,42 @@
+.box {
+  height: 100%;
+  background: no-repeat center / 100% 100% url("~@/assets/img/box.png");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  img {
+    width: 4rem;
+    height: 1rem;
+  }
+}
+.active:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.box:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: #fff;
+  z-index: -1;
+}
+.box:after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: #fff;
+  z-index: -2;
+  filter: blur(20px);
+}
+.box:before,
+.box:after {
+  background: linear-gradient(235deg, #aee6c4, #2b3d3c, #47e6c8);
+}

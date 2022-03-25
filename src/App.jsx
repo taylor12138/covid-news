@@ -1,19 +1,23 @@
 import React from 'react'
-import { Menu } from 'antd';
-import { MailOutlined } from '@ant-design/icons';
+import { HashRouter} from "react-router-dom";
 
+import '@/views/App/App.less'
+import Tab from '@/views/tab';
+import Swiper from '@/views/swiper';
+import More from '@/views/more';
+import Footer from '@/views/footer';
+import Router from '@/router';
 
 export default function App() {
   return (
-    <div>
-      <Menu selectedKeys={[]}>
-        <Menu.Item key="mail">
-          Navigation One
-        </Menu.Item>
-        <Menu.Item key="app" disabled>
-          Navigation Two
-        </Menu.Item>
-        </Menu>
+    <div style={{ width: '100%' }} className="app">
+      <HashRouter>
+        <Tab></Tab>
+        <Swiper></Swiper>
+        <More></More>
+        <Router></Router>
+        <Footer></Footer>
+      </HashRouter>
     </div>
   )
 }
