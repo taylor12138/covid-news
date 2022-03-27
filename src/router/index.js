@@ -23,7 +23,7 @@ function Router(props) {
         <Route path="/vaccine" component={Vaccine}></Route>
         <Route path="/rumour" component={Rumour}></Route>
         <Route path="/people" component={People}></Route>
-        <Redirect from="/" to="/vaccine" exact />
+        <Redirect from="/" to="/vaccine" />
       </Switch>
     </div>
   );

@@ -1,10 +1,11 @@
 import React, {useState, useCallback, useEffect, useRef} from 'react'
 import { Menu } from 'antd';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import TWEEN from '@tweenjs/tween.js'
 import { connect } from 'react-redux'
 
 import './index.less';
+import {throttle} from '@/common/common';
 
 const tabOptions = [
   {
@@ -24,7 +25,7 @@ const tabOptions = [
   },
   {
     key: 'vaccine',
-    title:'疫苗普及小知识',
+    title:'疫苗 | 防护小知识',
     to:'/vaccine'
   },
   {
@@ -35,6 +36,17 @@ const tabOptions = [
 ]
 
 /*animation************** */
+// function scrollAnimation(turnY, time) {
+//   const n = 25;
+//   let i = 0
+//   let currentTop = window.scrollY;
+//   const s=(turnY-currentTop)/n
+//   const timer = setInterval(() => {
+//     if (i === n) window.clearInterval(timer)
+//     i++
+//     window.scrollTo(0,currentTop+s*i)
+//   }, time / n);
+// }
 function scrollAnimation(turnY, time) {
   function animate(time) {
     requestAnimationFrame(animate)
@@ -61,15 +73,19 @@ function Tab(props) {
       setcurrentTab(props.location.pathname.slice(1))
   }, [props.location.pathname])
   
-  const handleTabClick = useCallback((e) => {
+  const handleTabClick = useCallback(throttle((e) => {
     console.log(e);
     setcurrentTab(e.key)
     const turnY = props.routerOffsetTop - TabRef.current.offsetHeight - TabRef.current.offsetTop
     //跳转到顶部
-    if (e.key === 'news') scrollAnimation(0, 500)
-    //跳转到router
-    else scrollAnimation(turnY, 500)
-  }, [props.routerOffsetTop])
+    if (e.key === 'news') {
+      scrollAnimation(0, 500)
+    } else {
+      //跳转到router
+      scrollAnimation(turnY, 500)
+      props.history.push(`/${e.key}`)
+    }
+  }), [props.routerOffsetTop])
   return (
     <div className='tab' ref={TabRef}>
       <header >
@@ -80,7 +96,7 @@ function Tab(props) {
               {item.title}
             </a>
           </Menu.Item> : <Menu.Item key={item.key}>
-            <Link to={item.to}>{item.title}</Link>
+            {item.title}
           </Menu.Item>
         })}
         </Menu>
