@@ -11,7 +11,9 @@ function Router(props) {
   const { changeOffsetTopAction } = props;
   const routerRef = useRef(null);
   useEffect(() => {
-    changeOffsetTopAction(routerRef.current.offsetTop);
+    Promise.resolve().then(() => {
+      changeOffsetTopAction(routerRef.current.offsetTop);
+    });
     return () => {};
   }, [changeOffsetTopAction]);
   return (

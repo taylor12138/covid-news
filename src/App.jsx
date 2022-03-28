@@ -10,14 +10,14 @@ import Router from '@/router';
 
 export default function App() {
   return (
-    <div style={{ width: '100%' }} className="app">
       <HashRouter>
+        <div style={{ width: '100%', paddingBottom: '1rem' }} className="app">
         <Tab></Tab>
         <Swiper></Swiper>
         <More></More>
         <Router></Router>
+        </div>
         <Footer></Footer>
       </HashRouter>
-    </div>
   )
 }

@@ -1,8 +1,9 @@
 .more {
   width: 100%;
   height: 25.6rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   background: center / 100% 100% no-repeat url("~@/assets/img/bg_more.jpg");
@@ -24,11 +25,28 @@
       .small {
         flex: 1;
         position: relative;
+        cursor: auto;
       }
       .big {
         flex: 2;
         position: relative;
       }
     }
+  }
+  .bean-top,
+  .bean-bottom {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    left: 0;
+    background: center / 100% 100% no-repeat url("~@/assets/img/bean.png");
+  }
+  .bean-top {
+    top: 0;
+    transform: translate(50%, -50%);
+  }
+  .bean-bottom {
+    bottom: 0;
+    transform: translate(50%, 50%);
   }
 }

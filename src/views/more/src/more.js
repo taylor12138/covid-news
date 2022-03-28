@@ -1,41 +1,57 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 
 import "./more.less";
 import Box from "@/common/box";
-import link from "./common";
+import initMoreArr, { col, row } from "./common";
+const arr = initMoreArr();
+console.log(arr);
 
-const row = 4;
-const col = 7;
-const arr = Array.from(Array(row), () => Array(col).fill(0));
-arr[0][1] = 1;
-arr[3][2] = 2;
-arr[2][5] = 3;
-arr[1][4] = 4;
-arr[1][0] = 5;
-arr[2][4] = 6;
-arr[0][5] = 7;
-arr[3][6] = 8;
-arr[2][0] = 9;
-
-export default function More() {
+export default function More(row) {
+  const [moreArr, setMoreArr] = useState(arr);
+  const goRight = useCallback(
+    (childRow) => {
+      console.log("enter, props");
+      const item = moreArr[childRow].pop();
+      moreArr[childRow].unshift(item);
+      setMoreArr([...moreArr]);
+    },
+    [moreArr]
+  );
   return (
     <div className="more">
       <article>
-        {arr.map((item) => {
+        {moreArr.map((item, index) => {
           return (
-            <div className="row">
-              {item.map((child) => (
-                <a
-                  href={link[child].a}
-                  className={link[child].name === "" ? "small" : "big"}
-                >
-                  <Box>{link[child]}</Box>
-                </a>
-              ))}
+            <div className="row" key={index}>
+              {item.map((child) =>
+                child.name === "" ? (
+                  <div
+                    key={child.key}
+                    href={child.a}
+                    className={child.name === "" ? "small" : "big"}
+                  >
+                    <Box moreGoRight={goRight} key={child.key} row={index}>
+                      {child}
+                    </Box>
+                  </div>
+                ) : (
+                  <a
+                    key={child.key}
+                    href={child.a}
+                    className={child.name === "" ? "small" : "big"}
+                  >
+                    <Box moreGoRight={goRight} key={child.key}>
+                      {child}
+                    </Box>
+                  </a>
+                )
+              )}
             </div>
           );
         })}
       </article>
+      <div className="bean-top"></div>
+      <div className="bean-bottom"></div>
     </div>
   );
 }

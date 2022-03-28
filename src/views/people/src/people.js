@@ -17,6 +17,7 @@ export default function People() {
   return (
     <div className="people">
       <List
+        bordered={true}
         itemLayout="vertical"
         size="large"
         pagination={{
@@ -27,24 +28,29 @@ export default function People() {
         }}
         dataSource={currentList}
         renderItem={(item) => (
-          <a href={item.url}>
-            <List.Item
-              key={item.title}
-              extra={
-                <img
-                  width={272}
-                  alt="logo"
-                  src={
-                    item.image ||
-                    "https://pics6.baidu.com/feed/d833c895d143ad4b58150c07f98c33a9a50f0656.jpeg?token=d7a4a43b994081e02b5c2e1c22a51608"
-                  }
+          <div className="router-list-item">
+            <a href={item.url}>
+              <List.Item
+                key={item.title}
+                extra={
+                  <img
+                    width={272}
+                    alt="logo"
+                    src={
+                      item.image ||
+                      "https://pics6.baidu.com/feed/d833c895d143ad4b58150c07f98c33a9a50f0656.jpeg?token=d7a4a43b994081e02b5c2e1c22a51608"
+                    }
+                  />
+                }
+              >
+                <List.Item.Meta
+                  title={item.title}
+                  description={item.keywords}
                 />
-              }
-            >
-              <List.Item.Meta title={item.title} description={item.keywords} />
-              {item.desc}
-            </List.Item>
-          </a>
+                {item.desc}
+              </List.Item>
+            </a>
+          </div>
         )}
       />
     </div>

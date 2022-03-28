@@ -33,6 +33,7 @@ export default function MyList() {
   return (
     <div className="mylist">
       <List
+        bordered={true}
         itemLayout="vertical"
         size="large"
         dataSource={currentList}
@@ -53,23 +54,25 @@ export default function MyList() {
           </div>
         }
         renderItem={(item) => (
-          <List.Item
-            key={item.title}
-            extra={
-              <img
-                width={272}
-                height={154}
-                alt="logo"
-                src={
-                  item.imgUrl ||
-                  "https://p9.itc.cn/images01/20210508/29c2e5e4f6d24900b88181fa41de68b7.jpeg"
-                }
-              />
-            }
-          >
-            <List.Item.Meta title={<a href={item.linkUrl}>{item.title}</a>} />
-            {item.description}
-          </List.Item>
+          <div className="router-list-item">
+            <List.Item
+              key={item.title}
+              extra={
+                <img
+                  width={272}
+                  height={154}
+                  alt="logo"
+                  src={
+                    item.imgUrl ||
+                    "https://p9.itc.cn/images01/20210508/29c2e5e4f6d24900b88181fa41de68b7.jpeg"
+                  }
+                />
+              }
+            >
+              <List.Item.Meta title={<a href={item.linkUrl}>{item.title}</a>} />
+              {item.description}
+            </List.Item>
+          </div>
         )}
       />
     </div>

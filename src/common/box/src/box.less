@@ -6,14 +6,19 @@
   justify-content: center;
   align-items: center;
   color: #fff;
+  transition: all 0.1s linear;
   img {
     width: 4rem;
     height: 1rem;
   }
 }
+.box:hover {
+  transform: scale(110%);
+}
 .active:hover {
   opacity: 0.5;
   cursor: pointer;
+  transform: scale(150%);
 }
 .box:before {
   content: "";
