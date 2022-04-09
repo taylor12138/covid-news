@@ -10,7 +10,6 @@ export default function Box(props) {
   }, [props.children]);
   const goRight = useCallback(() => {
     if (isShow) return;
-    console.log("enter");
     props.moreGoRight(props.row);
   }, [props, isShow]);
   return (

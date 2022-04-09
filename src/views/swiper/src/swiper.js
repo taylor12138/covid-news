@@ -12,7 +12,8 @@ export default function Swiper() {
   useEffect(() => {
     async function getData() {
       const frontData = await getFront;
-      setSwiperContent(frontData.data.list);
+      const list = frontData.data.list.slice(0, 5);
+      setSwiperContent(list);
     }
     getData();
   }, []);
@@ -28,14 +29,14 @@ export default function Swiper() {
         <Carousel style={{ height: "100%" }} autoplay ref={containerSwiper}>
           {swiperContent.map((item) => {
             return (
-              <div className="inner" key={item.article_id}>
+              <div className="inner" key={item.id}>
                 <div className="inner-img">
-                  <Image height={"100%"} width={"100%"} src={item.img} />
+                  <Image height={"100%"} width={"100%"} src={item.image} />
                 </div>
                 <a href={item.url}>
                   <div className="content">
                     <p>{item.title}</p>
-                    <p>{item.publish_time}</p>
+                    <p>{item.focus_date}</p>
                   </div>
                 </a>
               </div>

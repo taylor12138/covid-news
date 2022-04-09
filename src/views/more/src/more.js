@@ -10,7 +10,6 @@ export default function More(row) {
   const [moreArr, setMoreArr] = useState(arr);
   const goRight = useCallback(
     (childRow) => {
-      console.log("enter, props");
       const item = moreArr[childRow].pop();
       moreArr[childRow].unshift(item);
       setMoreArr([...moreArr]);
